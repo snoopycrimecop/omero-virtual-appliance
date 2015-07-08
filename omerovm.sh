@@ -41,7 +41,7 @@ function installvm ()
 	SCP="scp -2 -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o CheckHostIP=no -o PasswordAuthentication=no -o ChallengeResponseAuthentication=no -o PreferredAuthentications=publickey -i omerovmkey -P $SSH_PF"
 	SSH="ssh -2 -o StrictHostKeyChecking=no -i omerovmkey -p $SSH_PF -t"
 	echo "Copying scripts to VM"
-	$SCP ../../../target/OMERO.server*zip omero@localhost:~/
+	$SCP input/OMERO.server*zip omero@localhost:~/
 	$SCP driver.sh omero@localhost:~/
 	$SCP setup_userspace.sh omero@localhost:~/
 	$SCP setup_postgres.sh omero@localhost:~/
