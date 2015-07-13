@@ -22,3 +22,4 @@ fi
 
 $VBOX export $VMNAME --output $EXPORTVMNAME.ova
 md5sum $EXPORTVMNAME.ova > $EXPORTVMNAME.ova.md5sum
+shasum -a 1 $EXPORTVMNAME.ova > $EXPORTVMNAME.ova.sha1
