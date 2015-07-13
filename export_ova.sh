@@ -21,4 +21,4 @@ if [[ -e $EXPORTVMNAME.ova ]]; then
 fi
 
 $VBOX export $VMNAME --output $EXPORTVMNAME.ova
-shasum -a 1 $EXPORTVMNAME.ova > $EXPORTVMNAME.ova.sha1
+sha1sum $EXPORTVMNAME.ova > $EXPORTVMNAME.ova.sha1
