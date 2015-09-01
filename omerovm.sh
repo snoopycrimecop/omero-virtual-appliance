@@ -38,6 +38,7 @@ function installvm ()
 {
 	ssh-keygen -R [localhost]:2222 -f ~/.ssh/known_hosts
 	chmod 600 ./omerovmkey
+	./sshpass.py # Copy key using pexpect
 	SCP="scp -2 -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o CheckHostIP=no -o PasswordAuthentication=no -o ChallengeResponseAuthentication=no -o PreferredAuthentications=publickey -i omerovmkey -P $SSH_PF"
 	SSH="ssh -2 -o StrictHostKeyChecking=no -i omerovmkey -p $SSH_PF -t"
 	echo "Copying scripts to VM"
@@ -52,8 +53,8 @@ function installvm ()
 	$SCP omero-init.d omero@localhost:~/
 	$SCP omero-web-init.d omero@localhost:~/
 	$SCP virtualbox-network-fix-init.d omero@localhost:~/
-  $SCP virtualbox_fix.sh omero@localhost:~/
-  $SCP nginx-control.sh omero@localhost:~/
+	$SCP virtualbox_fix.sh omero@localhost:~/
+	$SCP nginx-control.sh omero@localhost:~/
 	echo "ssh : exec driver.sh"
 	$SSH omero@localhost "export OMERO_JOB=$OMERO_JOB; bash /home/omero/driver.sh"
 	sleep 10
